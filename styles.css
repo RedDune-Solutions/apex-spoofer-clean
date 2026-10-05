@@ -190,7 +190,7 @@ h1, h2, h3 { line-height: 1.12; letter-spacing: -0.02em; font-weight: 700; text-
   max-width: 1196px; margin-inline: auto;
   /* mesma goteira do header (.bar-inner): o rodapé alinha com o logótipo */
   padding: clamp(40px,6vw,64px) clamp(20px,5vw,60px) clamp(30px,4vw,44px);
-  display: grid; grid-template-columns: 1.5fr 1fr 1fr;
+  display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.8fr) max-content;
   gap: clamp(30px,5vw,70px); align-items: start;
 }
 .fs-mark { width: 52px; height: 38px; color: #fff; }
@@ -202,6 +202,28 @@ h1, h2, h3 { line-height: 1.12; letter-spacing: -0.02em; font-weight: 700; text-
 .fs-col { display: flex; flex-direction: column; gap: 2px; }
 .fs-h { font-size: 12px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; opacity: .6; margin-bottom: 12px; }
 .fs-col a, .fs-col > span:not(.fs-h) { font-size: 14.5px; padding-block: 4px; color: #fff; opacity: .9; }
+.fs-person {
+  display: flex; align-items: center; gap: 10px; flex-wrap: nowrap;
+  padding-block: 3px;
+}
+.fs-col .fs-person > a { width: auto; padding-block: 0; white-space: nowrap; }
+.fs-col .fs-langs {
+  position: relative; display: flex; align-items: center; gap: 5px;
+  margin: 0; padding: 0; opacity: 1; flex: none;
+}
+.fs-lang-sr {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
+/* mesma sprite dos indicativos (FLAG_ISOS em casa.js, 15px por linha a 20px de largura).
+   de 16, es 19, fr 21, gb 22, it 30, pt 45. Não usar emoji: no Windows saem letras. */
+.fs-flag {
+  display: block; flex: none; width: 20px; height: 15px; border-radius: 2px;
+  background-image: url("assets/flags/sprite.webp");
+  background-size: 20px auto; background-repeat: no-repeat;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.38);
+}
+.fs-flag.is-soft { opacity: .45; }
 .fs-col a { transition: opacity .2s; width: fit-content; }
 .fs-col a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 4px; }
 .fs-btm { border-top: 1px solid rgba(255,255,255,.18); }
@@ -214,6 +236,7 @@ h1, h2, h3 { line-height: 1.12; letter-spacing: -0.02em; font-weight: 700; text-
 .fs-btm-inner > span { opacity: .9; }
 @media (max-width: 760px) {
   .fs-grid { grid-template-columns: 1fr; gap: 30px; }
+  .fs-person { flex-wrap: wrap; }
   .fs-btm-inner { flex-direction: column; text-align: center; gap: 6px; }
 }
 
